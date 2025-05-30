@@ -78,6 +78,8 @@ function App() {
   useEffect(function () {
     async function fetchData() {
       try {
+        // Simulate API delay before even calling fetch
+        await new Promise((resolve) => setTimeout(resolve, 1500));
         // const res = await fetch("http://localhost:8000/questions");
         const res = await fetch("./questions.json");
         const data = await res.json();
