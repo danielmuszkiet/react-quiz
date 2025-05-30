@@ -100,6 +100,7 @@ h4 {
   grid-template-columns: auto auto;
   font-size: 1.8rem;
   color: var(--color-medium);
+  
 }
 
 progress {
@@ -108,8 +109,20 @@ progress {
   width: 100%;
   height: 12px;
   grid-column: 1 / -1;
+  border-radius: 100px;  
+  border: none;
+  background-color: var(--color-medium);
+
 }
 
+/* Firefox */
+progress::-moz-progress-bar {
+  background-color: var(--color-theme);
+  border-radius: 100px;
+
+}
+
+/* Chrome etc. */
 ::-webkit-progress-bar {
   background-color: var(--color-medium);
   border-radius: 100px;
@@ -118,7 +131,10 @@ progress {
 ::-webkit-progress-value {
   background-color: var(--color-theme);
   border-radius: 100px;
+  transition: all 0.35s;
 }
+
+
 
 .btn {
   display: block;
@@ -253,21 +269,4 @@ progress {
   80% {
     background-position: 0% 50%, 50% 50%, 100% 100%;
   }
-}
-
-/* ********** */
-/* First counter example */
-.counter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 6rem;
-}
-
-.counter * {
-  font-size: inherit;
-  padding: 0.8rem;
 }

@@ -12,9 +12,14 @@ export type QuizState = {
   index: number;
   answer: null | number;
   points: number;
+  highScore: number;
+  secondsRemaining: number;
 };
 
 export type Action =
   | { type: "dataRecieved"; payload: TQuestion[] }
   | { type: "newAnswer"; payload: number }
-  | { type: "dataFailed" | "start" };
+  | { type: "dataFailed" | "start" }
+  | { type: "nextQuestion" }
+  | { type: "finish" }
+  | { type: "restart" };
