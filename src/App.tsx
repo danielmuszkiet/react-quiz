@@ -70,6 +70,7 @@ function App() {
     useReducer(reducer, initalState);
 
   const numQuestions = questions.length;
+
   const maxPossiblePoints = questions.reduce((acc, q) => {
     return acc + q.points;
   }, 0);
@@ -77,8 +78,10 @@ function App() {
   useEffect(function () {
     async function fetchData() {
       try {
-        const res = await fetch("http://localhost:8000/questions");
+        // const res = await fetch("http://localhost:8000/questions");
+        const res = await fetch("./questions.json");
         const data = await res.json();
+
         dispatch({ type: "dataRecieved", payload: data });
       } catch (error) {
         dispatch({ type: "dataFailed" });
