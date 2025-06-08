@@ -1,17 +1,16 @@
 import { useQuiz } from "../context/useQuiz";
+import type { TQuestion } from "../types";
 
-function Options() {
-  const { questions, index, answer, dispatch } = useQuiz();
-
-  const question = questions[index];
+function Options({ question }: { question: TQuestion | undefined }) {
+  const { answer, dispatch } = useQuiz();
 
   const hasAnswered = answer !== null;
 
   return (
     <div className="options">
-      {question.options.map((option, i) => {
+      {question?.options.map((option, i) => {
         const isSelected = i === answer;
-        const isCorrect = i === question.correctOption;
+        const isCorrect = i === question?.correctOption;
 
         let statusClass = "";
         if (hasAnswered) {
@@ -23,7 +22,7 @@ function Options() {
         return (
           <button
             disabled={hasAnswered}
-            key={question.id + "-" + i}
+            key={question?.id + "-" + i}
             className={`btn btn-option ${statusClass} ${answerClass}`}
             onClick={() => dispatch({ type: "newAnswer", payload: i })}
           >
