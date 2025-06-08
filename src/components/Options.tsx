@@ -1,12 +1,10 @@
-import type { TQuestion, Action } from "../types";
+import { useQuiz } from "../context/useQuiz";
 
-type OptionProps = {
-  question: TQuestion;
-  dispatch: React.ActionDispatch<[action: Action]>;
-  answer: null | number;
-};
+function Options() {
+  const { questions, index, answer, dispatch } = useQuiz();
 
-function Options({ question, dispatch, answer }: OptionProps) {
+  const question = questions[index];
+
   const hasAnswered = answer !== null;
 
   return (

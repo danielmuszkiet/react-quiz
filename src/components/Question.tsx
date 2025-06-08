@@ -1,17 +1,14 @@
-import type { TQuestion, Action } from "../types";
+import { useQuiz } from "../context/useQuiz";
 import Options from "./Options";
 
-type QuestionProps = {
-  question: TQuestion;
-  dispatch: React.ActionDispatch<[action: Action]>;
-  answer: null | number;
-};
+function Question() {
+  const { questions, index } = useQuiz();
 
-function Question({ question, dispatch, answer }: QuestionProps) {
+  const question = questions[index];
   return (
     <div>
       <h4>{question.question}</h4>
-      <Options question={question} dispatch={dispatch} answer={answer} />
+      <Options />
     </div>
   );
 }

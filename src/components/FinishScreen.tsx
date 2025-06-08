@@ -1,14 +1,9 @@
-import type { Action } from "../types";
+import { useQuiz } from "../context/useQuiz";
 
-type FinishScreenProps = {
-  points: number;
-  maxPoints: number;
-  highScore: number;
-  dispatch: React.ActionDispatch<[action: Action]>;
-};
+function FinishScreen() {
+  const { maxPossiblePoints, points, highScore, dispatch } = useQuiz();
 
-function FinishScreen({ maxPoints, points, highScore, dispatch }: FinishScreenProps) {
-  const percentage = Math.ceil((points / maxPoints) * 100);
+  const percentage = Math.ceil((points / maxPossiblePoints) * 100);
 
   let emoji;
   if (percentage === 100) {
@@ -26,7 +21,8 @@ function FinishScreen({ maxPoints, points, highScore, dispatch }: FinishScreenPr
   return (
     <>
       <p className="result">
-        <span>{emoji}</span> Your scored <strong>{points}</strong> out of {maxPoints} ({percentage}
+        <span>{emoji}</span> Your scored <strong>{points}</strong> out of {maxPossiblePoints} (
+        {percentage}
         %)
       </p>
       <p className="highscore">(Highscore: {highScore} points)</p>

@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
 
-import type { Action } from "../types";
+import { useQuiz } from "../context/useQuiz";
 
-type TimerProps = {
-  dispatch: React.ActionDispatch<[action: Action]>;
-  secondsRemaining: number;
-};
-
-function Question({ dispatch, secondsRemaining }: TimerProps) {
+function Question() {
+  const { secondsRemaining, dispatch } = useQuiz();
   const [time, setTime] = useState(secondsRemaining);
 
   useEffect(() => {
